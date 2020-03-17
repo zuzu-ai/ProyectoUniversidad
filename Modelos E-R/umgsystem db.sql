@@ -26,5 +26,24 @@ NombreAsignatura varchar(60) not null,
 EstadoAsignatura varchar(1) not null,
 AlumnosAsignados varchar(100) not null,
 foreign key (AlumnosAsignados) references
-Alumnos(IDAlumno)
+Alumnos(IDAlumno),
+MaestroAsignado varchar(60) not null,
+foreign key (MaestroAsignado) References
+Maestros(Id_Maestro)
+)engine=innodb;
+
+create table Maestros(
+Id_Maestro varchar(10) primary key,
+Nombre_Maestro varchar(60) not null,
+Sexo_Maestro varchar(1) not null,
+Edad_Maestro int not null,
+Direccion_Maestro varchar(60) not null,
+Sueldo_Maestro double(5,2) not null
+)engine=innodb;
+
+create table Administracion(
+
+Id_Maestros VARCHAR(10) NOT NULL,
+foreign key (Codigo_Maestros) References
+Maestros(Codigo_Maestros)
 )engine=innodb;
