@@ -23,8 +23,63 @@ Fotografia varchar(1) not null
 create table Asignaturas(
 IDAsignatura varchar(10) primary key,
 NombreAsignatura varchar(60) not null,
-EstadoAsignatura varchar(1) not null,
-AlumnosAsignados varchar(100) not null,
-foreign key (AlumnosAsignados) references
-Alumnos(IDAlumno)
+EstadoAsignatura varchar(1) not null
+)engine=innodb;
+
+create table Maestros(
+Id_Maestro varchar(10) primary key,
+Nombre_Maestro varchar(60) not null,
+Sexo_Maestro varchar(1) not null,
+Edad_Maestro int not null,
+Direccion_Maestro varchar(60) not null,
+Sueldo_Maestro double(5,2) not null
+)engine=innodb;
+
+create table Administracion(
+Id_Maestros VARCHAR(10) NOT NULL,
+foreign key (Codigo_Maestros) References
+Maestros(Codigo_Maestros)
+)engine=innodb;
+
+create table Directores(
+Id_Director varchar(10) primary key
+)engine=innodb;
+
+create table SEDE(
+Id_Sede varchar(10)not null,
+Nombre_Sede varchar(60) not null,
+Direccion_sede varchar(80) not null,
+Numero_sede int not null,
+Numero_Telefinco varchar (30) not null,
+Id_Director varchar(10) not null,
+Numero_Estudiante int not null,
+Numero_Maestros int not null,
+Numero_Carreras int not null,
+Estado_Sede varchar (1) not null
+)engine=InnoDB;
+
+create table Jornadas(
+Id_Jornada varchar(10) primary key
+)engine=innodb;
+
+create table Horarios(
+Id_Horario varchar(10) primary key
+)engine=innodb;
+
+create table Salones(
+Id_Salon varchar(10) primary key,
+Jornada varchar(10) not null,
+foreign key (Jornada) References
+Jornadas(Id_Jornada),
+Horario varchar(10) not null,
+foreign key (Horario) References
+Horarios(Id_Horario),
+Estado_Salon varchar(1) not null,
+Capacidad_Salon int not null,
+Sede varchar(10) not null,
+foreign key (Sede) References
+Sedes(Id_Sede),
+Asignatura varchar(10) not null,
+foreign key (Asignatura) References
+Asignaturas(Id_Asignatura)
 )engine=innodb;
