@@ -40,10 +40,25 @@ Edad_Maestro int not null,
 Direccion_Maestro varchar(60) not null,
 Sueldo_Maestro double(5,2) not null
 )engine=innodb;
+Insert Into Maestros values("1","Pedro Morales","M",34,"zona 1","2000");
+Insert Into Maestros values("2","Sara Perez","F",39,"zona 10","2050");
+Insert Into Maestros values("3","Byron Torres","M",44,"zona 2","3000");
+Insert Into Maestros values("4","Milsa Ramirez","F",34,"zona 7","2000");
+
+select *from Maestros;
 
 create table Administracion(
-
 Id_Maestros VARCHAR(10) NOT NULL,
 foreign key (Codigo_Maestros) References
 Maestros(Codigo_Maestros)
+)engine=innodb;
+
+create table Horarios(
+Id_Horarios varchar(5) not null,
+IDAsignatura varchar(10) not null,
+foreign key (IDAsignatura) references
+Asignaturas(IDAsignatura),
+Id_Maestro varchar(10) not null,
+foreign key (Id_Maestro) references
+Asignaturas(Id_Maestro)
 )engine=innodb;
