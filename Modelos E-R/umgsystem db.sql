@@ -75,10 +75,6 @@ create table Jornadas(
 Id_Jornada varchar(10) primary key
 )engine=innodb;
 
-create table Horarios(
-Id_Horario varchar(10) primary key
-)engine=innodb;
-
 create table Salones(
 Id_Salon varchar(10) primary key,
 Jornada varchar(10) not null,
