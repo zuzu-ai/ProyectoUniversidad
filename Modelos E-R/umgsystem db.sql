@@ -22,7 +22,7 @@ Estado_Director varchar(1) not null
 )engine=innodb;
 
 create table Sedes(
-Id_Sede varchar(10) not null,
+Id_Sede varchar(10) primary key,
 Nombre_Sede varchar(60) not null,
 Direccion_sede varchar(80) not null,
 Numero_sede int not null,
@@ -85,7 +85,7 @@ estadoJornada varchar(1) not null
 )engine=innodb;
 
 create table Horarios(
-IDHorario varchar(5) not null,
+IDHorario varchar(5) primary key,
 IDAsignatura varchar(10) not null,
 foreign key (IDAsignatura) references
 Asignaturas(Id_Asignatura),
@@ -97,19 +97,19 @@ Maestros(Id_Maestro)
 create table Salones(
 Id_Salon varchar(10) primary key,
 Jornada varchar(10) not null,
-foreign key (Jornada) References
-Jornadas(Id_Jornada),
 Estado_Salon varchar(1) not null,
 Capacidad_Salon int not null,
 SedeRaiz varchar(10) not null,
-foreign key (SedeRaiz) References
-Sedes(Id_Sede),
 AsignaturaAsignada varchar(10) not null,
-foreign key (AsignaturaAsignada) References
-Asignaturas(Id_Asignatura),
 HorarioSalon varchar(5) not null,
 foreign key (HorarioSalon) References
-Horarios(IDHorario)
+Horarios(IDHorario),
+foreign key (SedeRaiz) References
+Sedes(Id_Sede),
+foreign key (Jornada) References
+Jornadas(Id_Jornada),
+foreign key (AsignaturaAsignada) References
+Asignaturas(Id_Asignatura)
 )engine=innodb;
 
 create table factuarion_pagos(
